@@ -1,0 +1,106 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            // Michelle: train.py
+            // "args": [
+            //    "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/",
+            //     // alternative
+            //     // "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/common/random/",
+            //    "--log-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/log_FCNN/",
+            // //    "--distance-threshold", "16", "--peak-radius", "16", "--epochs", "100", "--lr-scheduler-steps", "40", "--objectness-score", "60",
+            //    "--distance-threshold", "8", "--peak-radius", "8", "--epochs", "100", "--lr-scheduler-steps", "40"//, "--objectness-score", "60",
+            // //    "--gauss-sigma", "1.25"//, "--scalehalf"
+            //    ],
+
+            // Michelle: compute_ap_on_full_images.py
+            // "args": ["-i", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/",
+            //        "-m", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/log_FCNN/model_2023-01-25_17-06-40_nn_spec1_Gaussian=0.625_sstep_size=40_num_epochs=100_size=444_lr=0.002nopost-transformbest_validation_loss.pth",
+            //     //    "--distance-threshold", "8", "--peak-radius", "8", "--objectness-score", "60", "-p", "val",
+            //        "--distance-threshold", "2", "4", "8", "16", "32", "--peak-radius", "8", "--objectness-score", "60", "-p", "test",
+            //        "--result_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/fcnn/"
+            //        ],
+
+            // plot_FCNN_images.py
+            // "args": ["-i", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/test/",
+            //        "-m", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/log_FCNN/model_2023-01-25_17-06-40_nn_spec1_Gaussian=0.625_sstep_size=40_num_epochs=100_size=444_lr=0.002nopost-transformbest_validation_loss.pth",
+            //     //    "--distance-threshold", "8", "--peak-radius", "8", "--objectness-score", "60", "-p", "val",
+            //        //"--distance-threshold", "16", "-p", "test",
+            //        "-o", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/fcnn/images/test/"
+            //        ],
+
+            //Yuliia: bbox_preparation.py
+            // "args": ["--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/"
+            // // ,"--target-path", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_augmented/"
+            // ,"--target-path", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/"
+            // //, "--rescale"
+            // ],
+
+            
+            // data_augmentation.py
+            // "args": ["--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/",
+            // //"--target-path", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/random/bounding_box_augmented/",
+            // ],
+
+
+            //Yuliia: detectrone2.py
+            // "args": [
+            //     // "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/random/bounding_box_processed/",
+            //     "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/",
+            //     "--model", "R101-FPN", "--train", "--num_exp", "10", "--eval_period", "500", "--max_iter", 
+            //     "35000", "--lr", "0.001",// "--rotations", "--cutmix", "--mixup", "--cutout", //"--pretrained", 
+            //     //"--log_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results/current_log.txt",
+            // "--output-dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results_new/"
+            // ],
+
+            //Yuliia: dt2_inference.py
+            // "args": [
+            // "--fimgs", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_augmented/dt_test.txt",
+            // // "--fimgs", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/dt_test.txt",
+            // // "--fimgs", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/random/bounding_box_processed/dt_test.txt",
+            //     "--model", "R101-FPN", "--num_exp", "7",//"--train", "--test",
+            // "--output-dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results_new/"
+            // ],
+
+            
+            //Yuliia: compute_ap_on_full_images_bounding_boxes.py
+            // compute_FRCNN_scores.py
+            // "args": [
+            //     // "--labels", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/test_cell_cores.json",
+            //     //    "--predictions", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results_new/_5_dt_test_predictions.json",
+            //        "--labels", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/test_cell_cores.json",
+            //        "--predictions", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results_new/_11_dt_test_predictions.json",
+            //     // "--labels", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/common/sequence_independent/bounding_box_processed/val_cell_cores.json",
+            //     //    "--predictions", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results/_8dt_valpredictions.json",
+            //        "--distance-thresholds", "2", "4", "8", "16", "32", "--objectness-score", "0.5",
+            //        "--result_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/frcnn/"
+            //        ],
+
+            //Yuliia: plot_results.py
+            "args": [
+                   "--result_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/"
+                   ],
+            
+
+            // plot_FRCNN_images.py
+            // "args": [
+            //        "--label-dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/",
+            //        "--predictions", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/src/Yuliia/results_new/_11_dt_val_predictions.json",
+            //        "--plot_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/frcnn/images/val/",
+            //        "--input-img-dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/bounding_box_processed/val/"
+            //        , "--partition",  "val"
+                //    ],
+                    
+        }
+        
+    ]
+}
