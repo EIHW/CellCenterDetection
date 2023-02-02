@@ -2,6 +2,7 @@
 
 This repository hosts the code necessary to replicate the experiments of the paper titled [TODO: Add Paper Title]. If you find the code useful or if you use it your research, please cite:
 [TODO: add publication here]. The data for reproduction is available at [TODO: ADD data link].
+
 Initial implementations by Michelle Lienhart (FCNN) and Yuliia Oksymets (FRCNN). Extended and edited by Manuel Milling. 
 
 We provide baseline experiments for two neural network architectures here: A custom fully convolutional neural network (using PyTorch) and an implementation of a Faster RCNN, based on detectron2.
@@ -17,6 +18,7 @@ We provide baseline experiments for two neural network architectures here: A cus
 - Download the data at [TODO add link], unzip in the `data` subdirectory, i.e., an example for an existing image location should be `data/sequence_independent/data_and_cell_center_annotations/train/20190420/Images_Part_1_Adhesion/Chip03_1-000.tif` 
 
 **FCNN (Fully Convolutional Neural Network)**
+
 Please note that paths and model names need to be adjusted appropriately.
 
 - In order to train the FCNN model, run the training script with custom parameters, e.g. 
@@ -28,11 +30,8 @@ Please note that paths and model names need to be adjusted appropriately.
 - Plot the original images together with predicted and ground truth cell center predictions with `src/plot_FCNN_images.py`, e.g.,
 `python src/plot_FCNN_images.py -i /nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/test/ -m /nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/log/log_FCNN/model_2023-01-25_17-06-40_nn_spec1_Gaussian=0.625_sstep_size=40_num_epochs=100_size=444_lr=0.002nopost-transformbest_validation_loss.pth -o /nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/fcnn/images/test/`
 
-
-
-
-
 **FRCNN (Faster Region-based Convolutional Neural Network)**
+
 - First, prepare the data for the bounding box-based object detection task by  running python `src/bounding_box_preparation.py`. The parameter `--rescale` converts all images to a common size of 2000x2000 pixels:
 `python src/bounding_box_preparation.py --data-root data/sequence_independent/data_and_cell_center_annotations/ --target-path data/sequence_independent/bounding_box_augmented/ --rescale`
 
