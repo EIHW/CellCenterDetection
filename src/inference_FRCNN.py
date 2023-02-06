@@ -36,7 +36,6 @@ def main(args):
     print(f"Weights {cfg_yaml}")
     cfg = config_train(ds_name_train="neurons_train",
                            ds_name_val="neurons_val",
-                           #output_dir="/home/oksymeyu/detectron_2/output" + "_" + str(args.num_exp),
                            output_dir=args.output_dir + "_" + str(args.num_exp),
                            model=cfg_yaml,
                            pretrained=args.pretrained)

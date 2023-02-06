@@ -36,7 +36,6 @@ def get_files_with_annotations(my_root_dir, ext_list=['.tif']):
         for filename in filenames:
             basename, ext = os.path.splitext(filename)
             if ext.lower() in ext_list:
-                # check for associated .json file
                 filename_anno = basename + '.json'
                 if os.path.exists(os.path.join(dirpath, filename_anno)):
                     my_file_list.append(os.path.join(dirpath, filename))
@@ -58,7 +57,6 @@ def show_training_sample(sample):
     img[:,:,0] += gt_map[:,:]
 
     plt.imshow(img)
-    #plt.scatter(landmarks[:, 0], landmarks[:, 1], s=10, marker='.', c='r')
     plt.pause(0.001)  # pause a bit so that plots are updated
 
 
@@ -153,12 +151,8 @@ class Rescale(object):
             # determine smaller edge of image
             # smaller edge == output_size
             if h > w:
-                # new_w == output_size
-                # new_h == output_size * h / w
                 new_h, new_w = self.output_size * h / w, self.output_size
             else:
-                # new_h == output_size
-                # new_w == output_size * w / h
                 new_h, new_w = self.output_size, self.output_size * w / h
         else:
             new_h, new_w = h * self.output_size, w * self.output_size
@@ -261,9 +255,6 @@ class RandomCrop(object):
         # new_w: width of cropped image
         new_h, new_w = self.output_size
 
-        #if (h - new_h) <= 0 or (w - new_w) <= 0:
-        #    # image size too small, random crop not possible, return original image
-        #    return {'image': image, 'gt_points': gt_points}
 
         # Random top left corner of cropped image
         top = np.random.randint(0, h - new_h)
@@ -330,14 +321,8 @@ class CellCoreDataset(Dataset):
     def __getitem__(self, idx):
         img_filename = self.cell_image_filenames[idx]
         # read every image in grayscale
-        #print(img_filename)
-        ### TODO: Remove/adjust this part later on:
-        # Either -4 or -3 depending on what folder hirarchy to be used
         file_name_split = img_filename.split("/")[-3:]
-        #image_file = self.root_dir + os.path.join(file_name_split)
-        #print(file_name_split)
         img_filename = self.root_dir + "/".join(file_name_split)
-        #print(img_filename)
         
         image = io.imread(img_filename, as_gray=True)
         image_size_prior = image.shape
@@ -377,16 +362,10 @@ class CellCoreDataset(Dataset):
             #new_shape.append( int(t / self.output_reduction + 0.49))
         
         # convert my_params to result image
-        # default: output_reduction = 1
         cell_core_map = np.zeros(tuple(new_shape), dtype=np.float32)
         for p in sample['gt_points']:
             x,y = p
             # Doing gaussian kernel here
-            # if False:
-            #     x = min(int(x / self.output_reduction + 0.5), new_shape[1]-1)
-            #     y = min(int(y / self.output_reduction + 0.5), new_shape[0]-1)
-            #     cell_core_map[y,x] = 1.0
-            # else:
             x = float(x) / self.output_reduction 
             y = float(y) / self.output_reduction
             heat_map = gaussian_kernel(new_shape[1], new_shape[0], x, y, sigma = self.gauss_sigma)
@@ -399,17 +378,15 @@ class CellCoreDataset(Dataset):
         my_max = np.max(cell_core_map) + 0.001
         # normalize cell_core_map
         sample['gt_map'] = (cell_core_map / my_max).astype(np.float32)
-        #print("Sample length: " + str(len(sample)))
         return sample
 
 
 if __name__ == "__main__":
     print('Alive')
-    my_root_dir = "/Users/Michelle/Documents/Augsburg_Uni/SS 2019/Bachelorarbeit/Aufnahmen_src/Aufnahmen_bearbeitet/20190420_Easter_special/Images_Part_1_Adhesion"
+    my_root_dir = ""
     dataset = CellCoreDataset(my_root_dir, 
                             transform = transforms.Compose(
                                 [Rescale( int(1864 / 2) ),
-                                #RandomRescale( 0.9, 1.1 ), 
                                 RandomCrop(446)]
                             )
                 )

@@ -59,8 +59,6 @@ def determine_hits(
     if N_1 <= 0:
         return [], tp, fp, fn
 
-    # Expand S_1 with hit and fp column per entry
-    # i.e. entry = [i, j, score, hit, fp]
     S_1_ext = [x+[0,1] for x in S_1] 
     dist = np.zeros((N_1, N_2), dtype=np.float32)
 
@@ -159,8 +157,6 @@ def compute_AP(
     for i in range(mpre.shape[0]-2, -1, -1):
         mpre[i] = max(mpre[i], mpre[i+1])
     # comes back as unmodifiable tuple. There convert to np.array
-    #i = np.array( np.nonzero(mpre[1:] != mpre[0:-1]) )
-    #ap = np.sum( (mrec[i+1]-mrec[i]) * mpre[i] )
     diffs = mrec[1:] - mrec[0:-1]
     ap = np.sum( diffs * mpre[1:] )
     return ap

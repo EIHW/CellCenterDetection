@@ -8,13 +8,11 @@ import numpy as np
 from typing import List, Tuple
 import argparse
 
-# TODO: not make everything in-place
 
 def main(args):
     train_path = args.data_root
     add_path = args.data_root
     partitions = ["train", "val", "test"]
-    # Data from Micheale
     for partition in partitions:
         print("Augmenting data for " + partition)
         with open(os.path.join(train_path, partition + "_" + "bboxs.json"), "r") as f:
@@ -36,24 +34,6 @@ def main(args):
         with open(os.path.join(add_path, partition + "_" + "cell_cores_augmented.json"), "w+") as f:
             json.dump(cell_cores_org, f)
 
-    # Additionaly annotated data
-    # with open(os.path.join(add_path, "bboxs.json"), "r") as f:
-    #     bboxes_org = json.load(f)
-
-    # with open(os.path.join(add_path, "cell_cores.json"), "r") as f:
-    #     cell_cores_org = json.load(f)
-
-    # imgs = glob.glob(add_path + "/*[0-9].jpeg")
-    # org_imgs = [f for f in imgs if re.search(r"\/[0-9]+\.jpeg$", f)]
-    # augm_bboxes, augm_cc = augment_main(org_imgs, bboxes_org, cell_cores_org)
-
-    # bboxes_org.update(augm_bboxes)
-    # with open(os.path.join(add_path, "bboxes_augmented.json"), "w+") as f:
-    #     json.dump(bboxes_org, f)
-
-    # cell_cores_org.update(augm_cc)
-    # with open(os.path.join(add_path, "cell_cores_augmented.json"), "w+") as f:
-    #     json.dump(cell_cores_org, f)
 
 
 def augment_main(org_imgs: List[str],
@@ -241,10 +221,5 @@ if __name__ == '__main__':
         help='Root folder for data', 
         required=True
     )
-    # parser.add_argument(
-    #     '--target-path',
-    #     help='Target folder for data', 
-    #     required=True
-    # )
     args = parser.parse_args()
     main(args)

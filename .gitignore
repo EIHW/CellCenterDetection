@@ -4,3 +4,4 @@ results/frcnn/
 logs/log_FRCNN/
 logs/log_FCNN/
 gpu_scripts/logs/
+.vscode/

@@ -92,8 +92,6 @@ if __name__ == "__main__":
     my_params['scaling'] = cur_scaling # == 1.0 / 2
 
     cv2.namedWindow("Cells", cv2.WINDOW_AUTOSIZE)
-    #cv2.namedWindow("Cells", 0)
-    #cv2.resizeWindow("Cells", 500, 500)
     cv2.setMouseCallback('Cells', my_mousehandler_for_gt_annotations, my_params)
 
     while key_code != 27: # key code 27: esc
@@ -112,7 +110,6 @@ if __name__ == "__main__":
                     my_params = json.load(json_file)
             my_params['scaling'] = cur_scaling
 
-            # print(img.shape, my_params)
             old_index = index
             print('Current image', index, filename)
 

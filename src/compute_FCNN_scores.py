@@ -22,7 +22,6 @@ import matplotlib.pyplot as plt
 from parse import parse
 
 from cellcoredataset import CellCoreDataset, RandomCrop, RandomRescale, Rescale
-#from network import My_Net
 from network import My_Net, find_local_maxima
 from annotation import get_files
 from evaluation import determine_hits, compute_AP
@@ -48,7 +47,6 @@ def show_training_sample(img, map):
     heat_map = transform.resize(map[:,:], img.shape)
     heat_map[heat_map >= 1.0] = 1.0
     heat_map[heat_map <= 0.0] = 0.0
-    #img[:,:,0] += transform.resize(map[:,:], img.shape)
     
     # convert image from gray scale to rgb
     img = color.gray2rgb(img)
@@ -155,7 +153,6 @@ if __name__ == "__main__":
     
     
     parser = ArgumentParser()
-    #my_root_dir = os.path.join(os.path.dirname(code_path),"Aufnahmen_bearbeitet/20190420_Easter_special/Images_Part_2_DcAMP")
     parser.add_argument('-i', '--input_image_directory', type=str,
         help='Specify *.pth file name of a train model',  required=True)
     parser.add_argument('-m', '--model_path', type=str, required=True,

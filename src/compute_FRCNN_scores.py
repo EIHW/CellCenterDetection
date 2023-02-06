@@ -23,10 +23,6 @@ import cv2
 import matplotlib.pyplot as plt
 from parse import parse
 
-#from cellcoredataset import CellCoreDataset, RandomCrop, RandomRescale, Rescale
-#from network import My_Net
-#from network import My_Net, find_local_maxima
-#from annotation import get_files
 from evaluation import determine_hits
 
 
@@ -54,7 +50,6 @@ if __name__ == "__main__":
     
     
     parser = ArgumentParser()
-    #my_root_dir = os.path.join(os.path.dirname(code_path),"Aufnahmen_bearbeitet/20190420_Easter_special/Images_Part_2_DcAMP")
     parser.add_argument('--labels', help='Path to labels in cell center format', required=True)
     parser.add_argument('--predictions', help='Path to predictions in bounding box format', required=True)
     parser.add_argument('--distance-thresholds',  nargs='+', type=int, default=8)
@@ -63,19 +58,6 @@ if __name__ == "__main__":
     
     
 
-    #my_root_dir = os.path.join(os.path.dirname(code_path),"Aufnahmen_bearbeitet/20190420_Easter_special/Images_Part_2_DcAMP")
-    #parser.add_argument('-i', '--input_image_directory', dest='input_image_directory', type=str, required=False,
-    #    help='Specify *.pth file name of a train model', 
-    #    default=my_root_dir)
-    #parser.add_argument('-m', '--model_filename', dest='model_filename', type=str, required=False,
-    #    help='Specify *.pth file name of a train model', 
-    #    default=os.path.join(os.path.dirname(code_path),"models/model_2019-06-23_14-14-56.pth"))
-    #parser.add_argument('-d', '--device', dest='device_str', type=str, required=False,
-    #    help='Specify *.pth file name of a train model', 
-    #    default='gpu')
-    #parser.add_argument('-g#', '--gpu_device_number', dest='gpu_device_number', type=int, required=False,
-    #    help='specify cuda device number', 
-    #    default=0)
 
     # Aufruf/Durchfuehrung
     args = parser.parse_args()
@@ -100,7 +82,6 @@ if __name__ == "__main__":
             
             # labels have to be in cell center form
             labels_centers = labels_all_imgs[key]
-            # TODO: threshold???
             predictions_centers = get_center_from_boxes(predictions_boxes, threshold=args.objectness_score)
             S_1_ext, tp, fp, fn = determine_hits(predictions_centers, labels_centers, max_dist_threshold=dist_threshold)
             if tp != 0:

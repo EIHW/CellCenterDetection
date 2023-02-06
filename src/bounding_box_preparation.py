@@ -15,19 +15,10 @@ IMG_IDS = dict()
 NEW_IMG_SIZE = (2000, 2000)
 
 def main(args):
-    #dpaths = glob.glob("/nas/student/YuliiaOksymets/Aufnahmen_bearbeitet/train/*/*")
     Path(args.target_path).mkdir(parents=True, exist_ok=True)
 
     partition_dirs = ["train", "val", "test"]
-    #train_path = args.target_path + "train" #"/nas/student/YuliiaOksymets/data_resized/train"
-    #val_path = args.target_path + "val"
-    #test_path = args.target_path + "test"
-    #test_path = "/nas/student/YuliiaOksymets/data_resized/test"
 
-    # add_path = glob.glob("/nas/student/YuliiaOksymets/additional_data/Annotiert/*/*")
-    # dsn_add_path = "/nas/student/YuliiaOksymets/data_resized_add"
-
-    # Data from Micheal
     for partition in partition_dirs:
         print("Preparing: " + partition)
         Path(args.target_path + partition + "/").mkdir(parents=True, exist_ok=True)
@@ -55,27 +46,12 @@ def main(args):
         save_partition_file_list(file_list, fname3)
 
         # Additionally annotated data
-        # add_cell_cores = dict()
-        # for path in add_path:
-        #     tiff_to_jpeg(path, dsn_add_path, train = True)
-        #     points = create_points_dict(path)
-        #     add_cell_cores.update(points)
-        # fname1 = os.path.join(dsn_add_path, "cell_cores.json")
-        # save_points_json(add_cell_cores, fname1)
-
-        # bboxs = center_to_bbox(add_cell_cores, 25, 20, 35, 35)
-        # fname2 = os.path.join(dsn_add_path, "bboxs.json")
-        # save_bbox_json(bboxs, fname2)
         print("Annotated images: ", COUNT_ANNOTATED_PARTITION)
         print("Annotated cells: ", COUNT_ANNOTATED_CELLS)
 
-        # dpaths = glob.glob("/nas/student/YuliiaOksymets/Aufnahmen_bearbeitet/test/*/*")
-        # for path in dpaths:
-        #     tiff_to_jpeg(path, test_path)
 
         global IMG_IDS
 
-        #with open("/nas/student/YuliiaOksymets/data_resized/img_ids.json", "w+") as f:
         with open(args.target_path + partition +"_img_ids.json", "w+") as f:
             json.dump(IMG_IDS, f, indent=4)
 

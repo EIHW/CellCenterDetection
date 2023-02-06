@@ -33,7 +33,6 @@ def main(args):
     with open(args.output_dir + "_" + str(args.num_exp) + "/metadata.txt", "w") as f:
         f.write(str(args))
 
-    #train_path = "/nas/student/YuliiaOksymets/data_resized/train"
     train_path = args.data_root #+ "train"
     train_s = read_imglist_txt(args.data_root + "dt_train.txt")
     val_s = read_imglist_txt(args.data_root + "dt_val.txt")
@@ -50,26 +49,15 @@ def main(args):
                 annotations = annotations | json.load(f)
     all_img = list()
     all_img.extend(train_s)
-    # all_img.extend(val_s)
-    # all_img.extend(test_s)
 
     augmentations = list()
     if args.rotations:
-        # rot_path = "/home/oksymeyu/detectron_2/output" + "_" + str(args.num_exp) + "/rot"
-        # os.mkdir(rot_path)
         rotated = list()
         for s in all_img:
             cpy_s = s[:-5]
             tmp = [cpy_s + "_" + str(i) + ".jpeg" for i in range(1,5)]
             rotated.extend(tmp)
         augmentations.extend(rotated)
-        # for i in rotated:
-        #     im = cv2.imread(i)
-        #     k = os.path.basename(i)[:-5]
-        #     bb = annotations[k]
-        #     for b in bb:
-        #         cv2.rectangle(im, (b[0], b[1]), (b[2], b[3]), (255, 0, 0), 2)
-        #     cv2.imwrite(rot_path + "/" + k + ".jpeg", im)
 
     if args.cutout:
         cutout = list()
@@ -113,7 +101,6 @@ def main(args):
         cfg = config_train(ds_name_train="neurons_train",
                            ds_name_val="neurons_val",
                            base_lr=args.lr,
-                           #output_dir="/home/oksymeyu/detectron_2/output" + "_" + str(args.num_exp),
                            output_dir= args.output_dir + "_" + str(args.num_exp),
                            max_iter=args.max_iter,
                            model=cfg_yaml,
@@ -175,7 +162,6 @@ def config_train(ds_name_train: str,
 
 def collect_ds(imgs: List[str], annotations: dict) -> List[dict]:
     l = list()
-    #print("collect_ds: " + str(imgs))
     imgs.sort()
     for im in imgs:
         im_id = os.path.basename(im)[:-5]
@@ -191,7 +177,6 @@ def collect_ds(imgs: List[str], annotations: dict) -> List[dict]:
                 "iscrowd": 0
             }
             ann.append(ad)
-        #print(im)
         height, width, _ = cv2.imread(im).shape
         d = {
             "file_name": im,
@@ -241,7 +226,6 @@ if __name__ == '__main__':
 
 
 
-    #parser.add_argument("--", dest="cutout", action="store_true")
 
     parser.add_argument('--data-root', help='Root folder of data', required=True)
     parser.add_argument("--output-dir", type=str, default="")
