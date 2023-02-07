@@ -15,7 +15,7 @@ def get_files_without_annotations(my_root_dir, ext_list=['.tif']):
                 print(os.path.join(dirpath, filename))
     return my_file_list
 
-folder = "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/common/sequence_independent/data_and_cell_center_annotations/"
+folder = "data/sequence_independent/data_and_cell_center_annotations/"
 non_annotated_files = get_files_without_annotations(folder)
 for file_tbr in non_annotated_files:
     os.remove(file_tbr)
