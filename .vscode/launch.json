@@ -12,15 +12,15 @@
             "console": "integratedTerminal",
             "justMyCode": true,
             // Michelle: train.py
-            "args": [
-               "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/",
-                // alternative
-                // "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/common/random/",
-               "--log-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/logs/log_FCNN/",
-            //    "--distance-threshold", "16", "--peak-radius", "16", "--epochs", "100", "--lr-scheduler-steps", "40", "--objectness-score", "60",
-               "--distance-threshold", "16", "--peak-radius", "8", "--epochs", "100", "--lr-scheduler-steps", "40"//, "--objectness-score", "60",
-            //    "--gauss-sigma", "1.25"//, "--scalehalf"
-               ],
+            // "args": [
+            //    "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/",
+            //     // alternative
+            //     // "--data-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/common/random/",
+            //    "--log-root", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/logs/log_FCNN/",
+            // //    "--distance-threshold", "16", "--peak-radius", "16", "--epochs", "100", "--lr-scheduler-steps", "40", "--objectness-score", "60",
+            //    "--distance-threshold", "16", "--peak-radius", "8", "--epochs", "100", "--lr-scheduler-steps", "40"//, "--objectness-score", "60",
+            // //    "--gauss-sigma", "1.25"//, "--scalehalf"
+            //    ],
 
             // Michelle: compute_ap_on_full_images.py
             // "args": ["-i", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/data/sequence_independent/data_and_cell_center_annotations/",
@@ -86,9 +86,9 @@
             //        ],
 
             //Yuliia: plot_results.py
-            // "args": [
-            //        "--result_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/"
-            //        ],
+            "args": [
+                   "--result_dir", "/nas/staff/data_work/manuel/cloned_repos/cell_center_detection/CellCenterDetection/results/"
+                   ],
             
 
             // plot_FRCNN_images.py
