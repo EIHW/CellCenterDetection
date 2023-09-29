@@ -10,4 +10,4 @@
 # This activates the environment (given .envrc is in the current directory)
 direnv allow . && eval "\$(direnv export bash)"
 
-python src/train_FCNN.py --data-root data/sequence_independent/data_and_cell_center_annotations/ --log-root src/log_FCNN/ --distance-threshold 8 --peak-radius 8 --epochs 100 --lr-scheduler-steps 40 --objectness-score 60
+python src/train_FCNN.py --data-root data/sequence_independent/data_and_cell_center_annotations/ --log-root src/log_FCNN/ --distance-threshold 16 --peak-radius 8 --epochs 100 --lr-scheduler-steps 40 --objectness-score 60
